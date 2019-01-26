@@ -8,7 +8,7 @@ Full System
 
 
 
-Control System: Arduino is intterupt driven by the RTC, sending control signals to the servo directly and to the light via a solid state relay.
+Control System: Arduino is interrupt driven by the RTC, sending control signals to the servo directly and to the light via a solid state relay.
 
 
 ![circuit1](https://user-images.githubusercontent.com/43456575/51780181-6589cd80-20da-11e9-9619-4429ac7e0d64.jpg)
