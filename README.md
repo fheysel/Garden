@@ -13,6 +13,10 @@ Control System: Arduino is interrupt driven by the RTC, sending control signals 
 
 ![circuit1](https://user-images.githubusercontent.com/43456575/51780181-6589cd80-20da-11e9-9619-4429ac7e0d64.jpg)
 
+Schematic:
+
+![schematic](https://user-images.githubusercontent.com/43456575/57662221-56546000-75a3-11e9-8f0c-fee261dde10f.PNG)
+
 
 Initial tesiting footage of the watering system made out of a spare servo and some recycled materials
 
