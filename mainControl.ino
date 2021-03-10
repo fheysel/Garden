@@ -1,6 +1,6 @@
 /*
  * Autonomous Garden Project
- * By Tom Heysel
+ * By Fiona Heysel
  * December 23 2018
  * Version 1
  * 
