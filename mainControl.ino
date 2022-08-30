@@ -16,7 +16,7 @@
 #define LIGHT_PIN 7
 #define VALVE_PIN 3
 
-#define VALVE_OPEN 95//TESTED VALUES
+#define VALVE_OPEN 95
 #define VALVE_CLOSED 180
 
 Servo valve;
@@ -39,7 +39,7 @@ void setup() {
   DS3231_clear_a1f();
   DS3231_clear_a2f();
   set_alarm();
-  set_time();//ONLY RUN THIS ON INITIAL SETUP! LEAVE THIS COMMENTED!!!
+  // set_time(); //ONLY RUN THIS FUNCTION ON INITIAL SETUP! LEAVE THIS COMMENTED!!!
 
   //SERVO SET UP
   valve.attach(VALVE_PIN);
@@ -50,7 +50,7 @@ void setup() {
   struct ts t;
   DS3231_get(&t);
   if(t.hour >= 19 || t.hour <= 7){
-    digitalWrite(LIGHT_PIN, HIGH);// if current time is between 7 pm and 7 am, start light on
+    digitalWrite(LIGHT_PIN, HIGH); // if current time is between 7 pm and 7 am, start light on
   }
   else{
     digitalWrite(LIGHT_PIN, LOW);      
@@ -71,7 +71,7 @@ void loop() {
       }
 
       if (DS3231_triggered_a2()) {
-        DS3231_clear_a2f();//clear source of interrupt
+        DS3231_clear_a2f(); //clear source of interrupt
         digitalWrite(LIGHT_PIN, 1);
       }
       prev = now;
@@ -86,6 +86,7 @@ void set_alarm(){
   // A1M3 (hour)    (0 to enable, 1 to disable) 
   // A1M4 (day)     (0 to enable, 1 to disable)
   // DY/DT          (dayofweek == 1/dayofmonth == 0)
+
   uint8_t flags1[5] = { 0, 0, 0, 1, 1 }; //Indicates to only check when the hours match
   uint8_t flags2[4] = { 0, 0, 1, 1 }; //Alarm2 does not have a seconds value, it starts with minutes, therefore only matches hours as well
 
@@ -99,10 +100,12 @@ void set_time(){
   struct ts t;
   t.sec = 0;
   t.min = 45;
-  t.hour = 0b;
-  t.wday = 7;//sunday, user defined.
-  t.
-  
+  t.hour = 9;
+  t.wday = 6; // 7 is sunday, user defined.
+  t.mday = 1;
+  t.mon = 2;
+  t.year = 2020;
+  DS3231_set(t);
 }
 
 void water(){
@@ -115,6 +118,7 @@ void printTime(){
   char buff[BUFF_MAX];
   struct ts t; //struct ts defined in ds3231.h
   DS3231_get(&t);
+  
   // display current time
   snprintf(buff, BUFF_MAX, "%d.%02d.%02d %02d:%02d:%02d", t.year, t.mon, t.mday, t.hour, t.min, t.sec);
   Serial.println(buff);   
